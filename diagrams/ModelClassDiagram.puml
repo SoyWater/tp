@@ -15,10 +15,18 @@ Class UserPrefs
 Class UniquePersonList
 Class Person
 Class Address
+Class EmergencyContact
 Class Email
 Class Name
 Class Phone
 Class Tag
+Class BloodType
+Class Gender
+Class Allergy
+Class Medicine
+Class AlcoholicRecord
+Class SmokingRecord
+Class PastDiagnoses
 
 Class I #FFFFFF
 }
@@ -41,7 +49,15 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> EmergencyContact
 Person *--> "*" Tag
+Person *--> BloodType
+Person *--> Gender
+Person *--> "*" Medicine
+Person *--> "*" Allergy
+Person *--> AlcoholicRecord
+Person *--> SmokingRecord
+Person *--> PastDiagnoses
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
