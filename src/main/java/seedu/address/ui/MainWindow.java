@@ -140,8 +140,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        appointmentListPanel =
-                new AppointmentListPanel(logic.getUpcomingAppointmentList(), logic.getPastAppointmentList());
+        appointmentListPanel = new AppointmentListPanel(logic.getUpcomingAppointmentList(),
+                logic.getPastAppointmentList(), commandBox);
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         detailsPanelPlaceholder.getChildren().clear();

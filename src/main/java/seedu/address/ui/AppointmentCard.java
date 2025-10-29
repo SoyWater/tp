@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -28,7 +29,7 @@ public class AppointmentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label patientId;
+    private Hyperlink patientId;
     @FXML
     private Label dateTime;
     @FXML
@@ -37,12 +38,15 @@ public class AppointmentCard extends UiPart<Region> {
     /**
      * Creates an {@code AppointmentCard} with the given {@code Appointment} and index to display.
      */
-    public AppointmentCard(Appointment appointment, int displayedIndex) {
+    public AppointmentCard(Appointment appointment, int displayedIndex, CommandBox commandBox) {
         super(FXML);
         this.appointment = appointment;
 
         id.setText(displayedIndex + ". ");
-        patientId.setText("Patient ID: " + appointment.getPatientId().toString());
+        patientId.setText(appointment.getPatientId().toString());
+        patientId.setOnMouseClicked((event) -> {
+            commandBox.handleFindIdClicked(patientId.getText());
+        });
         dateTime.setText("Date and Time: " + appointment.getDateTime().toString());
 
         String notesText = appointment.getNotes().toString();

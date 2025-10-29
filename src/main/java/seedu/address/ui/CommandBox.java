@@ -43,6 +43,26 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Handles the action triggered when the "Find ID" button is clicked.
+     * Executes a command to find the entity associated with the given ID.
+     * Clears the command text area on successful execution. If an exception
+     * occurs during command execution or parsing, updates the UI to indicate
+     * the failure.
+     *
+     * @param id The ID of the entity to be searched. It should not be null and
+     *           should be properly trimmed before passing to the method.
+     */
+    public void handleFindIdClicked(String id) {
+        try {
+            commandExecutor.execute("find " + id.trim());
+            commandTextArea.clear();
+        } catch (CommandException | ParseException e) {
+            setStyleToIndicateCommandFailure();
+        }
+    }
+
+
+    /**
      * Handles the Enter button pressed event.
      */
     @FXML

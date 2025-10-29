@@ -354,3 +354,18 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+
+.hyperlink {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #4dd0e1;
+    -fx-underline: true;
+    -fx-font-weight: normal;
+    -fx-cursor: hand;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #6fb8ff;
+    -fx-underline: true;
+}

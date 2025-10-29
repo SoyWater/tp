@@ -22,11 +22,15 @@ public class AppointmentListPanel extends UiPart<Region> {
     @FXML
     private ListView<Appointment> pastListView;
 
+    private CommandBox commandBox;
+
     /**
      * Creates an {@code AppointmentListPanel} with the given upcoming and past {@code ObservableList}s.
      */
-    public AppointmentListPanel(ObservableList<Appointment> upcomingList, ObservableList<Appointment> pastList) {
+    public AppointmentListPanel(ObservableList<Appointment> upcomingList, ObservableList<Appointment> pastList,
+                                CommandBox commandBox) {
         super(FXML);
+        this.commandBox = commandBox;
 
         upcomingListView.setItems(upcomingList);
         upcomingListView.setCellFactory(listView -> new AppointmentListViewCell());
@@ -50,7 +54,7 @@ public class AppointmentListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new AppointmentCard(appointment, getIndex() + 1).getRoot());
+                setGraphic(new AppointmentCard(appointment, getIndex() + 1, commandBox).getRoot());
             }
         }
     }
