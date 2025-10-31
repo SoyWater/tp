@@ -129,6 +129,7 @@ The `Model` component,
 * each `Person` and `Appointment` store a common reference of `IdentityNumber`
 
 <puml src="diagrams/ModelUiObjectDiagram.puml" width="450" />
+
 * stores the currently 'found' `Person` objects (e.g., results of a search query) as a separate _filtered_ list
 * stores 2 lists of `Appointments` objects sorted by time, one which is `SortedAllUpcomingAppointments` and another `SortedAllPastAppointments`
 * stores another 2 lists of `Appointments` objects filtered to current viewed `Person` object, one is `SortedViewedPersonUpcomingAppointments` and `SortedViewPersonPastAppointments`
