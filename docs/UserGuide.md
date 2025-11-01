@@ -189,7 +189,7 @@ Here are the key components of the HealthNote User Interface (UI), designed for 
 | **e\\EMAIL**                   | e01234567@u.nus.edu, jinHeng@gmail.com                  | joe@, asd@@@asd                | Emails should be of the format local-part@domain                                                              |
 | **addr\\HOME_ADDRESS**         | 123 Main St                                             | (Empty)                        | Addresses can take any values, and it should not be blank                                                     |
 | **ec\\EMERGENCY_CONTACT**      | [Mother] 9888-3333 (Office), [Brother] 9777-3333 (Home) | 9888-3333, 2222aaaa            | Must be in the form [{relationship}] {phone} where phone contains at least 2 consecutive digits               |
-| **dob\\DATE_OF_BIRTH**         | 05-23-1967, 12/10/1987                                  | 99-05-23, 19871312, 2020-12-20 | Date of birth should be of the following formats: D-M-YYYY, D/M/YYYY, or M-D-YYYY                             |
+| **dob\\DATE_OF_BIRTH**         | 5-23-1967, 12/10/1987                                   | 99-05-23, 19871312, 2020-12-20 | Date of birth should be of the following formats: d-M-yyyy, d/M/yyyy, or d.M.yyyy                             |
 | **b\\BLOOD_TYPE**              | A+, O-, AB, Bombay (hh), A Rh(D) negative               | (Empty)                        | Blood types can take any values, and it should not be blank                                                   |
 | **g\\GENDER**                  | Male, Female, Non-binary, Helicopter                    | (Empty)                        | Genders can take any values, and it should not be blank                                                       |
 | **ar\\ALCOHOLIC_RECORD**       | None, Occasionally, Heavy                               | (Empty)                        | Alcoholic Record can take any values, and it should not be blank                                              |
@@ -198,7 +198,7 @@ Here are the key components of the HealthNote User Interface (UI), designed for 
 | **t\\TAG**                     | Urgent, HighRisk, VIP                                   | (Empty)                        | Tags names can take any values, and it should not be blank                                                    |
 | **al\\ALLERGY**                | Peanuts, Penicillin                                     | (Empty)                        | Allergy names can take any values, and it should not be blank                                                 |
 | **m\\MEDICINE**                | 500mg Ibuprofen, 2 Panadol capsules/day                 | (Empty)                        | Medicine field can take any values, and it should not be blank                                                |
-| **adt\\APPOINTMENT_DATE_TIME** | 13-10-2025 10:00                                        | 22233344                       | Appointment date & time should be of the following formats: D-M-YYYY HH:MM, D/M/YYYY HH:MM, or M-D-YYYY HH:MM |
+| **adt\\APPOINTMENT_DATE_TIME** | 13-10-2025 10:00                                        | 22233344                       | Appointment date & time should be of the following formats: d-M-yyyy HH:mm, d/M/yyyy HH:mm, or d.M.yyyy HH:mm |
 | **note\\APPOINTMENT_NOTE**     | Needs IV Drip                                           | (Empty)                        | Appointment notes can take any values, and it should not be blank                                             |
 
 [Back to Table of Contents](#table-of-contents)
@@ -436,7 +436,7 @@ Examples:
 | **Field (with Prefix)**                | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
 |----------------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
 | **INDEX**                              | &check;         | &cross;                | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the shown list |
-| **adt\APPOINTMENT_DATE_TIME**          | &check;         | &cross;                | Full date time of the scheduled appointment                                         | d-m-yyyy HH:mm, d.m.yyyy HH:mm, d/m/yyyy HH:mm              |
+| **adt\APPOINTMENT_DATE_TIME**          | &check;         | &cross;                | Full date time of the scheduled appointment                                         | d-M-yyyy HH:mm, d/M/yyyy HH:mm, or d.M.yyyy HH:mm           |
 | **note\APPOINTENT_NOTE**               | &cross;         | &cross;                | Any additional notes for this particular appointment                                | Any string                                                  |
 
 #### Example:
