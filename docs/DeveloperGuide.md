@@ -78,9 +78,9 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 The `UI` component,
 
 * executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* listens for changes to `Model` data so that the UI can be updated with the modified data (see [Model](#model-component)).
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` and `Appointment` object residing in the `Model`.
 
 ### Logic component
 
@@ -129,10 +129,12 @@ The `Model` component,
 * each `Person` and `Appointment` store a common reference of `IdentityNumber`
 
 <puml src="diagrams/ModelUiObjectDiagram.puml" width="450" />
-* stores the currently 'found' `Person` objects (e.g., results of a search query) as a separate _filtered_ list
-* stores 2 lists of `Appointments` objects sorted by time, one which is `SortedAllUpcomingAppointments` and another `SortedAllPastAppointments`
-* stores another 2 lists of `Appointments` objects filtered to current viewed `Person` object, one is `SortedViewedPersonUpcomingAppointments` and `SortedViewPersonPastAppointments`
-* exposes the lists above to outsiders as an unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+* stores a list of `Person` objects called `FilteredPersonList`. This is the list that is displayed in the `PersonListPanel` in `UI`
+* stores 2 lists of `Appointments` objects sorted by time, one which is `SortedAllUpcomingAppointments` and another `SortedAllPastAppointments`. These are the lists displayed by `AppointmentListPanel` in `UI`
+* stores a `Person` object called `ViewedPerson` which is the person currently being viewed in the `PersonViewPanel` in `UI`
+* stores another 2 lists of `Appointments` objects filtered to current `ViewedPerson` object, one is `SortedViewedPersonUpcomingAppointments` and `SortedViewPersonPastAppointments`
+* exposes the above components to outsiders as unmodifiable `ObservableList`s and `ObservableValue` that can be 'observed'. The UI components are bound to them and automatically update when the data changes.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
