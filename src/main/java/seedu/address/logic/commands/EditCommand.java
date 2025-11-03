@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.AddCommand.OLDER_THAN_100_YEARS_WARNING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALCOHOLIC_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
@@ -117,7 +118,11 @@ public class EditCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.setViewedPerson(editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        String returnString = String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        if (editedPerson.getDateOfBirth().isOlderThanAge(100)) {
+            returnString = OLDER_THAN_100_YEARS_WARNING + returnString;
+        }
+        return new CommandResult(returnString);
     }
 
     /**

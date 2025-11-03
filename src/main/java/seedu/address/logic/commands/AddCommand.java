@@ -67,11 +67,11 @@ public class AddCommand extends Command {
             + PREFIX_MEDICINE + "100mg Panadol/day" + "\n"
             + "Note: \\ is preserved for internal usage and should not be used in any field other than prefix.";
 
+    public static final String OLDER_THAN_100_YEARS_WARNING = "WARNING: The age of the person is older than 100 years.\n";
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "A person with this ID already exists";
 
     private final Person toAdd;
-
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
@@ -90,7 +90,11 @@ public class AddCommand extends Command {
 
         model.addPerson(toAdd);
         model.setViewedPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        String returnString = String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
+        if (toAdd.getDateOfBirth().isOlderThanAge(100)) {
+            returnString = OLDER_THAN_100_YEARS_WARNING + returnString;
+        }
+        return new CommandResult(returnString);
     }
 
     @Override

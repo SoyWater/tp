@@ -131,4 +131,36 @@ public class DateOfBirthTest {
         DateOfBirth dateOfBirth = new DateOfBirth(today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         assertEquals(0, dateOfBirth.calculateAge());
     }
+
+    @Test
+    public void isOlderThanAge_birthdayHasOccurredThisYear() {
+        long age = Math.round((Math.random() * 80 + 1));
+        LocalDate dob = LocalDate.now().minusYears(age).minusMonths(1);
+        DateOfBirth dateOfBirth = new DateOfBirth(dob.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+
+        assertTrue(dateOfBirth.isOlderThanAge((int) (age))); // Exact age
+        assertTrue(dateOfBirth.isOlderThanAge((int) (age - 1))); // One year younger
+        assertFalse(dateOfBirth.isOlderThanAge((int) (age + 1))); // One year older
+    }
+
+    @Test
+    public void isOlderThanAge_birthdayHasNotOccurredThisYear() {
+        long age = Math.round((Math.random() * 80 + 1));
+        LocalDate dob = LocalDate.now().minusYears(age).plusMonths(1);
+        DateOfBirth dateOfBirth = new DateOfBirth(dob.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+
+        assertTrue(dateOfBirth.isOlderThanAge((int) (age - 1))); // Exact age
+        assertTrue(dateOfBirth.isOlderThanAge((int) (age - 2))); // One year younger
+        assertFalse(dateOfBirth.isOlderThanAge((int) age)); // One year older
+    }
+
+    @Test
+    public void isOlderThanAge_birthdayToday() {
+        LocalDate today = LocalDate.now();
+        DateOfBirth dateOfBirth = new DateOfBirth(today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+
+        assertTrue(dateOfBirth.isOlderThanAge((int) (0))); // Exact age
+        assertTrue(dateOfBirth.isOlderThanAge((int) (-1))); // One year younger
+        assertFalse(dateOfBirth.isOlderThanAge((int) 1)); // One year older
+    }
 }

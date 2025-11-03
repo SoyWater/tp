@@ -142,6 +142,18 @@ public class DateOfBirth {
         return age;
     }
 
+
+    /**
+     * Determines whether the age calculated from the date of birth is at least the specified age.
+     *
+     * @param age The age to compare against. Must be a non-negative integer.
+     * @return {@code true} if the calculated age is greater than or equal to the specified age,
+     *         {@code false} otherwise.
+     */
+    public boolean isOlderThanAge(int age) {
+        return calculateAge() >= age;
+    }
+
     @Override
     public int hashCode() {
         return dateOfBirth.hashCode();
