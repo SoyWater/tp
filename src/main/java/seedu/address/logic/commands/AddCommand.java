@@ -67,7 +67,8 @@ public class AddCommand extends Command {
             + PREFIX_MEDICINE + "100mg Panadol/day" + "\n"
             + "Note: \\ is preserved for internal usage and should not be used in any field other than prefix.";
 
-    public static final String OLDER_THAN_100_YEARS_WARNING = "WARNING: The age of the person is older than 100 years.\n";
+    public static final String OLDER_THAN_100_YEARS_WARNING =
+            "WARNING: The age of the person is older than 100 years.\n";
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "A person with this ID already exists";
 

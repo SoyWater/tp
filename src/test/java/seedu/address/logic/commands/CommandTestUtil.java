@@ -52,10 +52,12 @@ public class CommandTestUtil {
     public static final String VALID_DATE_OF_BIRTH_AMY = "01-01-1990";
     public static final String VALID_DATE_OF_BIRTH_BOB = "02-02-1992";
     public static final String VALID_ALLERGY_NUTS = "nuts";
+    public static final String VALID_ALLERGY_POLLEN = "pollen";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_MEDICINE_ANTIDEPRESSANT = "antidepressant";
     public static final String VALID_BLOOD_TYPE = "AB";
+    public static final String VALID_BLOOD_TYPE_BOB = "A+";
     public static final String VALID_ALCOHOLIC_RECORD_AMY = "Social drinker";
     public static final String VALID_ALCOHOLIC_RECORD_BOB = "Never";
     public static final String VALID_GENDER_AMY = "F";
