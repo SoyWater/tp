@@ -6,14 +6,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_OF_BIRTH_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Allergy;
+import seedu.address.model.person.Medicine;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
@@ -42,6 +49,10 @@ public class EditPersonDescriptorTest {
 
         // different phone -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different date of birth -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDateOfBirth(VALID_DATE_OF_BIRTH_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
@@ -77,5 +88,26 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getMedicines().orElse(null) + ", pastMedicalHistory="
                 + editPersonDescriptor.getPastMedicalHistory().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
+    }
+
+    @Test
+    public void isAnyFieldEdited_noFieldsEdited_returnsFalse() {
+        EditPersonDescriptor descriptor = new EditPersonDescriptor();
+        assertFalse(descriptor.isAnyFieldEdited());
+    }
+
+    @Test
+    public void isAnyFieldEdited_someFieldEdited_returnsTrue() {
+        EditPersonDescriptor descriptor = new EditPersonDescriptor();
+        descriptor.setName(new seedu.address.model.person.Name("Alice"));
+        assertTrue(descriptor.isAnyFieldEdited());
+    }
+
+    @Test
+    public void getOptionalFields_emptyWhenNotSet() {
+        EditPersonDescriptor descriptor = new EditPersonDescriptor();
+        assertFalse(descriptor.getTags().isPresent());
+        assertFalse(descriptor.getAllergies().isPresent());
+        assertFalse(descriptor.getMedicines().isPresent());
     }
 }

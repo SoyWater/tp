@@ -9,6 +9,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
 import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.EmergencyContact;
 import seedu.address.model.person.Gender;
@@ -53,6 +54,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setDateOfBirth(person.getDateOfBirth());
         descriptor.setSmokingRecord(person.getSmokingRecord());
         descriptor.setPastMedicalHistory(person.getPastMedicalHistory());
+        descriptor.setDateOfBirth(person.getDateOfBirth());
     }
 
     /**
@@ -84,6 +86,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code DateOfBirth} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDateOfBirth(String dob) {
+        descriptor.setDateOfBirth(new DateOfBirth(dob));
         return this;
     }
 

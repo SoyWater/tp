@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.AddCommand.OLDER_THAN_100_YEARS_WARNING;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -86,6 +87,29 @@ public class EditCommandTest {
                 false, false, null);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setViewedPerson(editedPerson);
+
+        assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void execute_exceed100YearsOld_warning() {
+        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+
+        PersonBuilder personInList = new PersonBuilder(lastPerson);
+        Person editedPerson = personInList.withDateOfBirth("01-01-0001").build();
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withDateOfBirth("01-01-0001").build();
+        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+
+        String expectedMessage = OLDER_THAN_100_YEARS_WARNING
+                + String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                false, false, null);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(lastPerson, editedPerson);
         expectedModel.setViewedPerson(editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);

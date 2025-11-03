@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.AddCommand.OLDER_THAN_100_YEARS_WARNING;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
@@ -44,6 +45,19 @@ public class AddCommandTest {
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(validPerson, modelStub.getStubViewedPerson());
+    }
+
+    @Test
+    public void execute_olderThan100YearOld_warning() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person validPerson = new PersonBuilder().withDateOfBirth("01-01-0001").build();
+
+        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        String expectedResult = OLDER_THAN_100_YEARS_WARNING
+                + String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson));
+        assertEquals(expectedResult, commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
         assertEquals(validPerson, modelStub.getStubViewedPerson());
     }
