@@ -23,7 +23,7 @@ public class AppointmentTime {
     public static final String MESSAGE_VALID_DATE_CONSTRAINT = "Appointment time should be a valid date and time: ";
 
     public static final String VALIDATION_REGEX =
-            "^(\\d{1,2})([-/.])(\\d{1,2})\\2(\\d{4}) (\\d{2}):(\\d{2})$";
+            "^(\\d{1,2})([-/.])(\\d{1,2})\\2(?!0000)(\\d{4}) (\\d{2}):(\\d{2})$";
 
     public static final List<DateTimeFormatter> FORMATTERS = List.of(
             DateTimeFormatter.ofPattern("d-M-uuuu HH:mm").withResolverStyle(ResolverStyle.STRICT),

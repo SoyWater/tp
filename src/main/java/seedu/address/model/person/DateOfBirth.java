@@ -62,7 +62,7 @@ public class DateOfBirth {
      * Separators: -, /, or .
      * Years: Four digits
      */
-    public static final String VALIDATION_REGEX = "^(\\d{1,2})([-/.])(\\d{1,2})\\2(\\d{4})$";
+    public static final String VALIDATION_REGEX = "^(\\d{1,2})([-/.])(\\d{1,2})\\2(?!0000)(\\d{4})$";
 
     public final LocalDate dateOfBirth;
 
